@@ -32,10 +32,10 @@ class EntriesController extends Controller
      */
     public function profile(int $userId)
     {
-        return view('entries.index', [
-            'entries' => Entry::where('created_by', User::findOrFail($userId)->id)
-                ->orderBy('created_at', 'desc')->paginate(3),
-        ]);
+        $user = User::findOrFail($userId);
+        $entries = Entry::where('created_by', $user->id)->orderBy('created_at', 'desc')->paginate(3);
+
+        return view('entries.profile', compact('user', 'entries'));
     }
 
     /**
