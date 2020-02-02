@@ -49527,6 +49527,8 @@ var app = new Vue({
   el: '#app'
 });
 
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -49570,6 +49572,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     key: process.env.MIX_PUSHER_APP_KEY,
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
+//     forceTLS: true
 // });
 
 /***/ }),

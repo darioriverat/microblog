@@ -16,6 +16,7 @@
     },
     "require-dev": {
         "facade/ignition": "^1.4",
+        "friendsofphp/php-cs-fixer": "^2.16",
         "fzaninotto/faker": "^1.9.1",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
@@ -48,6 +49,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
+        "php-cs-fixer": "php-cs-fixer fix --config=.php_cs",
+        "phpunit": "phpunit --stop-on-error --stop-on-failure --testdox",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
