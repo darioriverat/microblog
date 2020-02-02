@@ -2,7 +2,7 @@
 
 return [
     'actions' => [
-        'save' => 'save',
-        'edit' => 'edit',
+        'save' => 'Save',
+        'edit' => 'Edit',
     ],
 ];

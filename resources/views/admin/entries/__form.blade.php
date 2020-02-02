@@ -27,6 +27,15 @@
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
+    @else
+        <div class="form-group col-md-6">
+            <label for="friendly_url">Friendly url</label>
+            <input
+                type="text"
+                value="{{ $entry->friendly_url }}"
+                class="form-control"
+                readonly>
+        </div>
     @endif
 </div>
 <div class="form-row">
