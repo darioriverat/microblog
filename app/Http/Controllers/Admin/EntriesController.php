@@ -32,10 +32,9 @@ class EntriesController extends Controller
      */
     public function profile(int $userId)
     {
-        $user = User::findOrFail($userId);
-
         return view('entries.index', [
-            'entries' => Entry::where('created_by', $user->id)->orderBy('created_at', 'desc')->paginate(3),
+            'entries' => Entry::where('created_by', User::findOrFail($userId)->id)
+                ->orderBy('created_at', 'desc')->paginate(3),
         ]);
     }
 
@@ -58,12 +57,10 @@ class EntriesController extends Controller
      */
     public function store(Request $request)
     {
-        $data = array_merge($request->except('_token'), [
+        $entry = Entry::create(array_merge($request->except('_token'), [
             'created_by' => Auth::id(),
             'friendly_url_hash' => hash('md5', $request->input('friendly_url')),
-        ]);
-
-        $entry = Entry::create($data);
+        ]));
 
         return redirect()->route('entries.show', compact('entry'))->with([
             'success' => __('entries.messages.created'),
@@ -90,9 +87,7 @@ class EntriesController extends Controller
      */
     public function showBySlug(int $userId, string $friendlyUrl)
     {
-        $user = User::findOrFail($userId);
-
-        $entry = Entry::where('created_by', $user->id)
+        $entry = Entry::where('created_by', User::findOrFail($userId)->id)
             ->where('friendly_url_hash', hash('md5', $friendlyUrl))
             ->get()->first();
 
@@ -119,9 +114,7 @@ class EntriesController extends Controller
      */
     public function update(Request $request, Entry $entry)
     {
-        $data = array_merge($request->except('_token'));
-
-        $entry->update($data);
+        $entry->update(array_merge($request->except('_token'));
 
         return redirect()->route('entries.show', compact('entry'))->with([
             'success' => __('entries.messages.updated'),
