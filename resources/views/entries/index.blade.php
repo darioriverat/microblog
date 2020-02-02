@@ -5,9 +5,16 @@
         @forelse ($entries as $entry)
             <article>
                 <h2>
-                    <a href="{{ route('entries.show', $entry->id) }}">
-                        {{ $entry->title }}
-                    </a>
+                    @guest
+                        <a href="{{ route('entries.showBySlug', [$entry->created_by, $entry->friendly_url]) }}">
+                            {{ $entry->title }}
+                        </a>
+                    @else
+                        <a href="{{ route('entries.show', $entry->id) }}">
+                            {{ $entry->title }}
+                        </a>
+                    @endguest
+
                     @auth
                         @if ($entry->author->id == \Illuminate\Support\Facades\Auth::id())
                             <small><a href="{{ route('admin.entries.edit', $entry->id) }}" class="text-dark"><i class="fas fa-edit"></i></a></small>

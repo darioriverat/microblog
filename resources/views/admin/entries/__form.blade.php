@@ -7,17 +7,19 @@
             id="title"
             value="{{ $entry->title }}"
             class="form-control @error('title') is-invalid @enderror"
-            placeholder="entry's title">
+            placeholder="entry's title"
+            onkeyup="$('#friendly_url').val($(this).val().replace(/\s+/gi, '-'));">
         @error('title')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
+    @if ($createUrl ?? false)
     <div class="form-group col-md-6">
         <label for="friendly_url">Friendly url</label>
         <input
             type="text"
             name="friendly_url"
-            id="entry_url"
+            id="friendly_url"
             value="{{ $entry->friendly_url }}"
             class="form-control @error('friendly_url') is-invalid @enderror"
             placeholder="entry-about-something">
@@ -25,6 +27,7 @@
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
+    @endif
 </div>
 <div class="form-row">
     <div class="form-group col-md-12">

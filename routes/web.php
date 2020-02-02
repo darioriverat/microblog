@@ -27,3 +27,4 @@ Route::resource('entries', 'Admin\EntriesController')
     ->only(['index', 'show']);
 
 Route::get('entries/user/{id}', 'Admin\EntriesController@profile')->name('entries.profile');
+Route::get('entries/{userId}/{friendlyUrl}', 'Admin\EntriesController@showBySlug')->name('entries.showBySlug');

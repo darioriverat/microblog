@@ -27,13 +27,15 @@ class EntriesController extends Controller
     /**
      * Display a listing of the resource per user.
      *
-     * @param User $user
+     * @param int $userId
      * @return Response
      */
-    public function profile(User $user)
+    public function profile(int $userId)
     {
+        $user = User::findOrFail($userId);
+
         return view('entries.index', [
-            'entries' => Entry::where('created_by', Auth::id())->orderBy('created_at', 'desc')->paginate(3),
+            'entries' => Entry::where('created_by', $user->id)->orderBy('created_at', 'desc')->paginate(3),
         ]);
     }
 
@@ -58,7 +60,7 @@ class EntriesController extends Controller
     {
         $data = array_merge($request->except('_token'), [
             'created_by' => Auth::id(),
-            'friendly_url_hash' => hash('md5', $request->input('entry_url')),
+            'friendly_url_hash' => hash('md5', $request->input('friendly_url')),
         ]);
 
         $entry = Entry::create($data);
@@ -76,6 +78,24 @@ class EntriesController extends Controller
      */
     public function show(Entry $entry)
     {
+        return view('entries.show', compact('entry'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param int $userId
+     * @param string $friendlyUrl
+     * @return Response
+     */
+    public function showBySlug(int $userId, string $friendlyUrl)
+    {
+        $user = User::findOrFail($userId);
+
+        $entry = Entry::where('created_by', $user->id)
+            ->where('friendly_url_hash', hash('md5', $friendlyUrl))
+            ->get()->first();
+
         return view('entries.show', compact('entry'));
     }
 
@@ -99,9 +119,7 @@ class EntriesController extends Controller
      */
     public function update(Request $request, Entry $entry)
     {
-        $data = array_merge($request->except('_token'), [
-            'friendly_url_hash' => hash('md5', $request->input('entry_url')),
-        ]);
+        $data = array_merge($request->except('_token'));
 
         $entry->update($data);
 
