@@ -25,6 +25,12 @@
                 </p>
             </header>
             <p>{{ $entry->content }}</p>
+            <footer class="pt-2">
+                <span class="text-muted">--</span>
+                <a href="{{ route('entries.profile', $entry->author->id) }}">
+                    {{ $entry->author->name }}
+                </a>
+            </footer>
         </article>
     </div>
 @endsection
