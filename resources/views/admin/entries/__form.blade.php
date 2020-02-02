@@ -8,7 +8,7 @@
             value="{{ old('title', $entry->title) }}"
             class="form-control @error('title') is-invalid @enderror"
             placeholder="entry's title"
-            onkeyup="$('#friendly_url').val($(this).val().replace(/\s+/gi, '-'));">
+            onkeyup="$('#friendly_url').val($(this).val().replace(/\s+/gi, '-').toLowerCase());">
         @error('title')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror

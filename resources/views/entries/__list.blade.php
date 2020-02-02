@@ -1,15 +1,9 @@
 @forelse ($entries as $entry)
     <article>
         <h2>
-            @guest
-                <a href="{{ route('entries.showBySlug', [$entry->created_by, $entry->friendly_url]) }}">
-                    {{ $entry->title }}
-                </a>
-            @else
-                <a href="{{ route('entries.show', $entry->id) }}">
-                    {{ $entry->title }}
-                </a>
-            @endguest
+            <a href="{{ route('entries.showBySlug', [$entry->created_by, $entry->friendly_url]) }}">
+                {{ $entry->title }}
+            </a>
 
             @auth
                 @if ($entry->author->id == \Illuminate\Support\Facades\Auth::id())
