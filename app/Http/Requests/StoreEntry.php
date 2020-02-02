@@ -25,7 +25,7 @@ class StoreEntry extends FormRequest
     {
         return [
             'title' => 'required|max:100',
-            'description' => 'required|max:200',
+            'description' => 'max:200',
             'friendly_url' => 'required|max:150|alpha_dash',
             'content' => 'required',
         ];

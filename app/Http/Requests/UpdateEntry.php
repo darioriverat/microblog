@@ -25,7 +25,7 @@ class UpdateEntry extends FormRequest
     {
         return [
             'title' => 'required|max:100',
-            'description' => 'required|max:200',
+            'description' => 'max:200',
             'content' => 'required',
         ];
     }
