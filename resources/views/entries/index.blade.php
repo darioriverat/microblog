@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+
         @forelse ($entries as $entry)
             <article>
                 <h2>
@@ -37,5 +38,9 @@
         @empty
             <p>No entries</p>
         @endforelse
+
+        @if ($entries)
+            {{ $entries->links() }}
+        @endif
     </div>
 @endsection
