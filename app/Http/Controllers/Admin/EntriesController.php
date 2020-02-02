@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Entry;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreEntry;
+use App\Http\Requests\UpdateEntry;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -52,10 +54,10 @@ class EntriesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param StoreEntry $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreEntry $request)
     {
         $entry = Entry::create(array_merge($request->except('_token'), [
             'created_by' => Auth::id(),
@@ -108,12 +110,13 @@ class EntriesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param UpdateEntry $request
      * @param Entry $entry
      * @return Response
      */
-    public function update(Request $request, Entry $entry)
+    public function update(UpdateEntry $request, Entry $entry)
     {
+        //dd('foo');
         $entry->update(array_merge($request->except('_token')));
 
         return redirect()->route('entries.show', compact('entry'))->with([

@@ -20,7 +20,9 @@ class UpdateEntryTest extends TestCase
         $entry = factory(Entry::class)->create(['created_by' => $user->id]);
 
         $entry_data = [
-            'title' => $this->faker->realText(20),
+            'title' => $this->faker->text(50),
+            'description' => $entry->description,
+            'content' => $entry->content,
         ];
 
         $response = $this->actingAs($user)->put(route('admin.entries.update', $entry->id), $entry_data);
@@ -29,7 +31,7 @@ class UpdateEntryTest extends TestCase
 
         $this->assertDatabaseHas(
             'entries',
-            $entry->toArray(),
+            $entry->toArray()
         );
 
         $response->assertSessionHas('success');

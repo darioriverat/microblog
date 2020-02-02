@@ -17,11 +17,11 @@ class StoreEntryTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $title = $this->faker->realText(20);
+        $title = $this->faker->text(50);
 
         $entry = [
             'title' => $title,
-            'friendly_url' => str_replace(' ', '-', $title),
+            'friendly_url' => preg_replace(['#\s#', '#\.#'], '-', $title),
             'description' => $this->faker->text(100),
             'content' => $this->faker->text,
         ];

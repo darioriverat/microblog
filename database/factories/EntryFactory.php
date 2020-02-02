@@ -7,8 +7,8 @@ use App\Model;
 use Faker\Generator as Faker;
 
 $factory->define(Entry::class, function (Faker $faker) {
-    $title = $faker->realText(20);
-    $slug = str_replace(' ', '-', $title);
+    $title = $faker->text(50);
+    $slug = preg_replace(['#\s#', '#\.#'], '-', $title);
 
     return [
         'title' => $title,

@@ -15,10 +15,10 @@ class CreateEntriesTable extends Migration
     {
         Schema::create('entries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->text('description')->nullable();
+            $table->string('title', 100);
+            $table->string('description', 200)->nullable();
             $table->text('content');
-            $table->string('friendly_url');
+            $table->string('friendly_url', 150);
             $table->string('friendly_url_hash', 32);
             $table->unsignedBigInteger('created_by');
             $table->timestamps();

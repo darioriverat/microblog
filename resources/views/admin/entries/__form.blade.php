@@ -5,7 +5,7 @@
             type="text"
             name="title"
             id="title"
-            value="{{ $entry->title }}"
+            value="{{ old('title', $entry->title) }}"
             class="form-control @error('title') is-invalid @enderror"
             placeholder="entry's title"
             onkeyup="$('#friendly_url').val($(this).val().replace(/\s+/gi, '-'));">
@@ -20,7 +20,7 @@
             type="text"
             name="friendly_url"
             id="friendly_url"
-            value="{{ $entry->friendly_url }}"
+            value="{{ old('friendly_url', $entry->friendly_url) }}"
             class="form-control @error('friendly_url') is-invalid @enderror"
             placeholder="entry-about-something">
         @error('friendly_url')
@@ -45,7 +45,7 @@
             type="text"
             name="description"
             id="description"
-            value="{{ $entry->description }}"
+            value="{{ old('description', $entry->description) }}"
             class="form-control @error('description') is-invalid @enderror"
             placeholder="description">
         @error('description')
@@ -60,7 +60,7 @@
             name="content"
             id="content"
             class="form-control @error('content') is-invalid @enderror"
-            rows="3">{{ $entry->description }}</textarea>
+            rows="3">{{ old('content', $entry->content) }}</textarea>
         @error('content')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
