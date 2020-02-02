@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="container">
+
+        @if (session('success'))
+            @include('common.__alert', ['type' => 'success', 'message' => session('success')])
+        @endif
+
         <nav class="nav">
             <a class="nav-link btn btn-primary" href="{{ route('entries.index') }}">
                 <i class="fas fa-quote-left"></i> Entries

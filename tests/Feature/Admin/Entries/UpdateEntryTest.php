@@ -23,7 +23,7 @@ class UpdateEntryTest extends TestCase
             'title' => $this->faker->realText(20),
         ];
 
-        $this->actingAs($user)->put(route('admin.entries.update', $entry->id), $entry_data);
+        $response = $this->actingAs($user)->put(route('admin.entries.update', $entry->id), $entry_data);
 
         $entry->title = $entry_data['title'];
 
@@ -31,6 +31,8 @@ class UpdateEntryTest extends TestCase
             'entries',
             $entry->toArray(),
         );
+
+        $response->assertSessionHas('success');
     }
 
     /** @test */

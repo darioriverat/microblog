@@ -26,12 +26,14 @@ class StoreEntryTest extends TestCase
             'content' => $this->faker->text,
         ];
 
-        $this->actingAs($user)->post(route('admin.entries.store'), $entry);
+        $response = $this->actingAs($user)->post(route('admin.entries.store'), $entry);
 
         $this->assertDatabaseHas(
             'entries',
             $entry
         );
+
+        $response->assertSessionHas('success');
     }
 
     /** @test */
