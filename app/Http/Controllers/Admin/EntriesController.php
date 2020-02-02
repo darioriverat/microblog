@@ -116,7 +116,6 @@ class EntriesController extends Controller
      */
     public function update(UpdateEntry $request, Entry $entry)
     {
-        //dd('foo');
         $entry->update(array_merge($request->except('_token')));
 
         return redirect()->route('entries.show', compact('entry'))->with([
