@@ -93,6 +93,10 @@ class EntriesController extends Controller
             ->where('friendly_url_hash', hash('md5', $friendlyUrl))
             ->get()->first();
 
+        if (!$entry) {
+            abort(404);
+        }
+
         return view('entries.show', compact('entry'));
     }
 
