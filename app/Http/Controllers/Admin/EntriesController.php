@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\API\Contracts\TwitterServiceContract;
+use App\API\TwitterService;
 use App\Entry;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntry;
@@ -30,14 +32,17 @@ class EntriesController extends Controller
      * Display a listing of the resource per user.
      *
      * @param int $userId
+     * @param TwitterServiceContract $twitter
      * @return Response
      */
-    public function profile(int $userId)
+    public function profile(int $userId, TwitterServiceContract $twitter)
     {
         $user = User::findOrFail($userId);
         $entries = Entry::where('created_by', $user->id)->orderBy('created_at', 'desc')->paginate(3);
 
-        return view('entries.profile', compact('user', 'entries'));
+        $tweets = $twitter->getTweetsByUser($user->twitter_user);
+
+        return view('entries.profile', compact('user', 'entries', 'tweets'));
     }
 
     /**
