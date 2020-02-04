@@ -16,8 +16,6 @@ $('body').delegate("[data-role='btn-tweet-action']", 'click', function(event){
     let okCriteria = $(this).attr('data-field-ok');
     let method = $(this).attr('data-method');
 
-console.info($(this).attr('data-toggle-btn'));
-
     $.ajax({
         type: method,
         dataType: 'json',
