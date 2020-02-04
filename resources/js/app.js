@@ -32,3 +32,12 @@ const app = new Vue({
 });
 
 require('./bootstrap');
+
+import PNotify from 'pnotify/dist/es/PNotify';
+
+PNotify.defaults.styling = 'bootstrap4';
+PNotify.defaults.icons = 'fontawesome4'; // Font Awesome 4
+
+window.PNotify = PNotify;
+
+require('./tweets');

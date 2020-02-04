@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\API\Contracts\TwitterServiceContract;
-use App\API\TwitterService;
 use App\Entry;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntry;

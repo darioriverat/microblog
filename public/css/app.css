@@ -17267,3 +17267,21 @@ readers do not read off random characters that represent icons */
   font-family: "Font Awesome 5 Brands";
 }
 
+.processing-action {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(240, 240, 240, 0.8);
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.processing-action > .spinner-border {
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  margin-left: -20px;
+  margin-top: -20px;
+}
+
