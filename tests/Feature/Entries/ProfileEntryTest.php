@@ -33,7 +33,7 @@ class ProfileEntryTest extends TestCase
     }
 
     /** @test */
-    public function profileViewHasNoEntryEditLinkForNonAuthor()
+    public function profileViewHasNoEntryEditLinkForNonAuthors()
     {
         $user = factory(User::class)->create();
         $entry = factory(Entry::class)->create(['created_by' => $user->id]);
@@ -65,5 +65,35 @@ class ProfileEntryTest extends TestCase
         $response->assertSeeText('James Mallison');
         $response->assertSeeText('@Femi_Sorry I’m against brexit.');
         $response->assertSeeText('@sylv3on_ I found this too.');
+    }
+
+    /** @test */
+    public function itNotListsHiddenTweetsToAnyone()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)->json('POST', route('admin.tweets.store'), [
+            'tweet_id' => '1223947395387547648',
+        ]);
+
+        $this->post(route('logout'));
+
+        $response = $this->get(route('entries.profile', $user->id));
+
+        $response->assertDontSeeText('@Femi_Sorry I’m against brexit.');
+    }
+
+    /** @test */
+    public function itListsHiddenTweetsToTheOwner()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)->json('POST', route('admin.tweets.store'), [
+            'tweet_id' => '1223947395387547648',
+        ]);
+
+        $response = $this->get(route('entries.profile', $user->id));
+
+        $response->assertSeeText('@Femi_Sorry I’m against brexit.');
     }
 }
