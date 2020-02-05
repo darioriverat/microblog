@@ -49710,11 +49710,9 @@ $('body').delegate("[data-role='btn-tweet-action']", 'click', function (event) {
     },
     success: function success(response) {
       if (response[okCriteria]) {
-        notify('success', message); //btn.attr('disabled', 'disabled');
-
+        notify('success', message);
         btn.addClass('active').addClass('cursor-not-allowed');
-        btn.attr('data-role', ''); //related.removeAttr('disabled');
-
+        btn.attr('data-role', '');
         related.removeClass('active').removeClass('cursor-not-allowed');
         related.attr('data-role', 'btn-tweet-action');
 
