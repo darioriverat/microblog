@@ -49688,11 +49688,11 @@ $('body').delegate("[data-role='btn-tweet-action']", 'click', function (event) {
   var id = uuidv4();
   var btn = $(this);
   var container = $(this).attr('data-container');
+  var opaque = $(this).attr('data-opaque-container-on-success') === "true";
   var message = $(this).attr('data-message');
   var related = $($(this).attr('data-toggle-btn'));
   var okCriteria = $(this).attr('data-field-ok');
   var method = $(this).attr('data-method');
-  console.info($(this).attr('data-toggle-btn'));
   $.ajax({
     type: method,
     dataType: 'json',
@@ -49710,9 +49710,19 @@ $('body').delegate("[data-role='btn-tweet-action']", 'click', function (event) {
     },
     success: function success(response) {
       if (response[okCriteria]) {
-        notify('success', message);
-        btn.attr('disabled', 'disabled');
-        related.removeAttr('disabled');
+        notify('success', message); //btn.attr('disabled', 'disabled');
+
+        btn.addClass('active').addClass('cursor-not-allowed');
+        btn.attr('data-role', ''); //related.removeAttr('disabled');
+
+        related.removeClass('active').removeClass('cursor-not-allowed');
+        related.attr('data-role', 'btn-tweet-action');
+
+        if (opaque) {
+          $(container).addClass('medium-opacity');
+        } else {
+          $(container).removeClass('medium-opacity');
+        }
       } else {
         notify('error', 'Error processing request');
       }

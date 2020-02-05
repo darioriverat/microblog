@@ -11,6 +11,7 @@ $('body').delegate("[data-role='btn-tweet-action']", 'click', function(event){
     let btn = $(this);
 
     let container = $(this).attr('data-container');
+    let opaque = $(this).attr('data-opaque-container-on-success') === "true";
     let message = $(this).attr('data-message');
     let related = $($(this).attr('data-toggle-btn'));
     let okCriteria = $(this).attr('data-field-ok');
@@ -37,8 +38,15 @@ $('body').delegate("[data-role='btn-tweet-action']", 'click', function(event){
         {
             if (response[okCriteria]) {
                 notify('success', message);
-                btn.attr('disabled', 'disabled');
-                related.removeAttr('disabled');
+                btn.addClass('active').addClass('cursor-not-allowed');
+                btn.attr('data-role', '');
+                related.removeClass('active').removeClass('cursor-not-allowed');
+                related.attr('data-role', 'btn-tweet-action');
+                if (opaque) {
+                    $(container).addClass('medium-opacity');
+                } else {
+                    $(container).removeClass('medium-opacity');
+                }
             } else {
                 notify('error', 'Error processing request');
             }

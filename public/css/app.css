@@ -17285,3 +17285,11 @@ readers do not read off random characters that represent icons */
   margin-top: -20px;
 }
 
+.medium-opacity {
+  opacity: 50%;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
