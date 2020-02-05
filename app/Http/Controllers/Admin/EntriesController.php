@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\API\Contracts\TwitterServiceContract;
 use App\Entry;
+use App\HiddenTweets;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntry;
 use App\Http\Requests\UpdateEntry;
@@ -10,6 +12,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class EntriesController extends Controller
 {
@@ -30,14 +33,26 @@ class EntriesController extends Controller
      * Display a listing of the resource per user.
      *
      * @param int $userId
+     * @param TwitterServiceContract $twitter
      * @return Response
      */
-    public function profile(int $userId)
+    public function profile(int $userId, TwitterServiceContract $twitter)
     {
         $user = User::findOrFail($userId);
         $entries = Entry::where('created_by', $user->id)->orderBy('created_at', 'desc')->paginate(3);
 
-        return view('entries.profile', compact('user', 'entries'));
+        $tweets = $twitter->getTweetsByUser($user->twitter_user);
+
+        if (isset($tweets['errors'])) {
+            Log::warning('Tweeter service error', $tweets['errors']);
+        }
+
+        $hiddenTweets = HiddenTweets::whereIn('tweet_id', array_column($tweets, 'id_str'))
+            ->where('user_id', $user->id)
+            ->pluck('tweet_id')
+            ->toArray();
+
+        return view('entries.profile', compact('user', 'entries', 'tweets', 'hiddenTweets'));
     }
 
     /**

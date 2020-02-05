@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" autocomplete="off">
                         @csrf
 
                         <div class="form-group row">
@@ -36,6 +36,31 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="twitter_user" class="col-md-4 col-form-label text-md-right">{{ __('Twitter username') }}</label>
+
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="prepend_twitter_user" style="color: #3fa2f2;"><i class="fab fa-twitter"></i></span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        name="twitter_user"
+                                        value="{{ old('twitter_user') }}"
+                                        class="form-control @error('twitter_user') is-invalid @enderror"
+                                        id="validationCustomUsername"
+                                        aria-describedby="prepend_twitter_user" required>
+
+                                    @error('twitter_user')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 
