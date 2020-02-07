@@ -69,6 +69,13 @@ Install some sample data executing the following seeder.
 php artisan db:seed --class=SampleData
 ```
 
+You could use the following user to log in
+
+```text
+email: admin@jobsity.com
+pass:  password
+```
+
 ## Twitter integration
 
 For twitter integration set up the following variables with the appropriate values.
