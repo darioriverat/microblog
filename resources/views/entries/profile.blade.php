@@ -3,12 +3,12 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-8">
+            <div class="col-12 col-md-8">
                 <h2>{{ $user->name }} <small class="text-muted">entries</small> </h2><br />
 
                 @include('entries.__list')
             </div>
-            <div class="col-4">
+            <div class="col-12 col-md-4">
                 <h5 class="text-primary">Latest tweets</h5><br />
 
                 @if (!$tweets || isset($tweets['errors']))
