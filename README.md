@@ -12,15 +12,15 @@ installation and configuration.
 
 As any Laravel application, you will need to make sure your server meets the following requirements.
 
-PHP >= 7.2.0
-BCMath PHP Extension
-Ctype PHP Extension
-JSON PHP Extension
-Mbstring PHP Extension
-OpenSSL PHP Extension
-PDO PHP Extension
-Tokenizer PHP Extension
-XML PHP Extension
+- PHP >= 7.2.0
+- BCMath PHP Extension
+- Ctype PHP Extension
+- JSON PHP Extension
+- Mbstring PHP Extension
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Tokenizer PHP Extension
+- XML PHP Extension
 
 ## Installing Laravel
 
@@ -71,7 +71,7 @@ php artisan db:seed --class=SampleData
 
 ## Twitter integration
 
-For twitter integration set up the following variables with the apropieate values.
+For twitter integration set up the following variables with the appropriate values.
 
 ```properties
 TWITTER_API_KEY=
