@@ -11,7 +11,7 @@
             <div class="col-4">
                 <h5 class="text-primary">Latest tweets</h5><br />
 
-                @isset($tweets['errors'])
+                @if (!$tweets || isset($tweets['errors']))
                     @include('common.__alert', ['type' => 'warning', 'message' => 'No tweets'])
                 @endisset
 
@@ -19,7 +19,7 @@
                     $owner = $user->id == \Illuminate\Support\Facades\Auth::id();
                 @endphp
 
-                @if (count($tweets) && !isset($tweets['errors']))
+                @if ($tweets && !isset($tweets['errors']))
                     @foreach ($tweets as $tweet)
                         @php $hidden = in_array($tweet['id_str'], $hiddenTweets); @endphp
 

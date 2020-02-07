@@ -41,16 +41,23 @@ class EntriesController extends Controller
         $user = User::findOrFail($userId);
         $entries = Entry::where('created_by', $user->id)->orderBy('created_at', 'desc')->paginate(3);
 
-        $tweets = $twitter->getTweetsByUser($user->twitter_user);
+        $tweets = $twitter->getTweetsByUser($user->twitter_user) ?? [];
+        $hiddenTweets = [];
 
-        if (isset($tweets['errors'])) {
-            Log::warning('Tweeter service error', $tweets['errors']);
+        if ($tweets) {
+            if (isset($tweets['errors'])) {
+                Log::warning('Tweeter service error', $tweets['errors']);
+            }
+
+            $tweets_in = array_key_exists('id_str', $tweets) ? array_column($tweets, 'id_str') : [];
+
+            $hiddenTweets = HiddenTweets::whereIn('tweet_id', $tweets_in)
+                ->where('user_id', $user->id)
+                ->pluck('tweet_id')
+                ->toArray();
+        } else {
+            Log::error('Tweeter service failed', []);
         }
-
-        $hiddenTweets = HiddenTweets::whereIn('tweet_id', array_column($tweets, 'id_str'))
-            ->where('user_id', $user->id)
-            ->pluck('tweet_id')
-            ->toArray();
 
         return view('entries.profile', compact('user', 'entries', 'tweets', 'hiddenTweets'));
     }
