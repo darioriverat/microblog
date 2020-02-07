@@ -96,4 +96,22 @@ class ProfileEntryTest extends TestCase
 
         $response->assertSeeText('@Femi_Sorry I’m against brexit.');
     }
+
+    /** @test */
+    public function itNotListsTweetsWhenServiceFails()
+    {
+        $twitter_api = config('twitter.api_search_url');
+        config(['twitter.api_search_url' => '']);
+
+        $user = factory(User::class)->create();
+        $response = $this->get(route('entries.profile', $user->id));
+
+        $response->assertSeeText('Latest tweets');
+        $response->assertSeeText('No tweets');
+        $response->assertDontSeeText('James Mallison');
+        $response->assertDontSeeText('@Femi_Sorry I’m against brexit.');
+        $response->assertDontSeeText('@sylv3on_ I found this too.');
+
+        config(['twitter.api_search_url' => $twitter_api]);
+    }
 }
