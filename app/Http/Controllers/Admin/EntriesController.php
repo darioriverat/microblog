@@ -49,7 +49,9 @@ class EntriesController extends Controller
                 Log::warning('Tweeter service error', $tweets['errors']);
             }
 
-            $tweets_in = array_key_exists('id_str', $tweets) ? array_column($tweets, 'id_str') : [];
+            $tweets_in = array_key_exists('id_str', $tweets[0] ?? [])
+                ? array_column($tweets, 'id_str')
+                : [];
 
             $hiddenTweets = HiddenTweets::whereIn('tweet_id', $tweets_in)
                 ->where('user_id', $user->id)

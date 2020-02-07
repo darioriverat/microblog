@@ -8,6 +8,10 @@ class TwitterServiceMock implements TwitterServiceContract
 {
     public function getTweetsByUser(string $user)
     {
+        if (config('twitter.api_search_url') !== 'https://api.twitter.com/1.1/statuses/user_timeline.json') {
+            return false;
+        }
+
         return [
             [
                 "created_at" => "Sun Feb 02 12:32:53 +0000 2020",

@@ -13,7 +13,7 @@
 
                 @if (!$tweets || isset($tweets['errors']))
                     @include('common.__alert', ['type' => 'warning', 'message' => 'No tweets'])
-                @endisset
+                @endif
 
                 @php
                     $owner = $user->id == \Illuminate\Support\Facades\Auth::id();
