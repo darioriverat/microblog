@@ -46,7 +46,7 @@ Set up the environment variables copying the `.env.example` file.
 cp .env.example .env
 ```
 
-Make sure to set up at least the `DB_* variables with the database information.
+Make sure to set up at least the `DB_*` variables with the database information.
 Finally, generate the key for the application.
 
 ```bash
