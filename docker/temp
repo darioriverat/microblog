@@ -1,0 +1,18 @@
+RUN mkdir -p /var/www/jobsitychallenge/dariorivera
+COPY ./* /var/www/jobsitychallenge/dariorivera/
+
+RUN apt-get -y update \
+    && apt-get -y install \
+    libpng-dev \
+    libzip-dev \
+    libxml2-dev \
+    iputils-ping \
+    vim \
+    wget \
+    && a2enmod rewrite \
+    && docker-php-ext-install pdo_mysql intl gd zip
+
+
+RUN chown -R www-data:www-data /var/www
+RUN chmod -R a+w /var/www/jobsitychallenge/dariorivera/storage
+RUN chmod a+w /var/www/jobsitychallenge/dariorivera/bootstrap/cache

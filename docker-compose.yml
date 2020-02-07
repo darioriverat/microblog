@@ -1,0 +1,50 @@
+version: '3.2'
+services:
+  web:
+    container_name: dario_app
+    build: ./docker
+    volumes:
+      - type: bind
+        source: .
+        target: /var/www/jobsitychallenge/dariorivera
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+    links:
+      - db
+    networks:
+      self_declarations_network:
+        ipv4_address: ${IPV4_NETWORK:-172.25.2}.30
+        aliases:
+          - litespeed
+  db:
+    container_name: dario_app_db
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    volumes:
+      - db-data:/var/lib/mysql/data
+    env_file:
+      - ./docker/env
+    networks:
+      self_declarations_network:
+        ipv4_address: ${IPV4_NETWORK:-172.25.2}.10
+        aliases:
+          - mysql
+
+volumes:
+  db-data:
+
+  data:
+    driver: "local"
+
+networks:
+  self_declarations_network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: 1450
+    ipam:
+      driver: default
+      config:
+        - subnet: ${IPV4_NETWORK:-172.25.2}.0/24
