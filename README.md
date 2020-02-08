@@ -104,5 +104,13 @@ following command.
 docker-compose up --build -d
 ```
 
+After you executed this command, you should wait a few minutes until the background process ends
+processing. You can be sure of this by looking the output of the following command.
+
+```bash
+$ docker logs dario_app | tail -n1
+Entries and Twees has been installed!
+```
+
 To see the application in action you should access to `http://127.0.0.1:8085/`. Keep in mind
 you also need to set up twitter variables if you want to have twitter integration.
