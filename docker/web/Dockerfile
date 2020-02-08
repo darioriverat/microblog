@@ -21,8 +21,6 @@ ENV PGID ${PGID}
 
 RUN useradd -u ${PUID} -g www-data -m jobsity
 
-COPY --chown=www-data:www-data . /var/www/jobsitychallenge/dariorivera
-
 # Entry point
 USER root
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
