@@ -11,6 +11,7 @@ RUN apt-get -y update \
     iputils-ping \
     vim \
     wget \
+    unzip \
     && a2enmod rewrite \
     && docker-php-ext-install pdo_mysql intl gd zip
 
