@@ -3,6 +3,12 @@
 This application is designed to show the knowledge and expertise about web technologies,
 and creation of robust PHP web applications with attention to software architecture and security.
 
+You can download this project as follows.
+
+```bash
+git clone https://github.com/fermius/php-jobsity-challenge
+```
+
 # Installation
 
 This application was developed with Laravel 6x, most of the following steps are related to laravel
@@ -21,6 +27,8 @@ As any Laravel application, you will need to make sure your server meets the fol
 - PDO PHP Extension
 - Tokenizer PHP Extension
 - XML PHP Extension
+
+Further, you need at least MySQL 5.7.
 
 ## Installing Laravel
 
@@ -87,4 +95,14 @@ TWITTER_API_ACCESS_TOKEN=
 TWITTER_API_ACCESS_TOKEN_SECRET=
 ```
 
+# Docker Installation
 
+You can take advantage of Docker capabilities to install this project. You only need execute the
+following command.
+
+```bash
+docker-compose up --build -d
+```
+
+To see the application in action you should access to `http://127.0.0.1:8085/`. Keep in mind
+you also need to set up twitter variables if you want to have twitter integration.
