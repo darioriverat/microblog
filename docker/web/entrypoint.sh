@@ -2,6 +2,8 @@
 
 service apache2 start
 
+chown -R jobsity:www-data ../dariorivera
+
 # Laravel installation
 su jobsity -c "composer install"
 su jobsity -c "chmod -R a+w storage"
