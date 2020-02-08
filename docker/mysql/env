@@ -1,0 +1,5 @@
+MYSQL_HOST=db:3306
+MYSQL_ROOT_PASSWORD=root
+MYSQL_DATABASE=jobsity_db
+MYSQL_USER=jobsity_user
+MYSQL_PASSWORD=dbadmin
