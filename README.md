@@ -6,7 +6,7 @@ and creation of robust PHP web applications with attention to software architect
 You can download this project as follows.
 
 ```bash
-git clone https://github.com/fermius/php-jobsity-challenge
+git clone https://github.com/darioriverat/entries-with-twitter-integration
 ```
 
 # Installation
