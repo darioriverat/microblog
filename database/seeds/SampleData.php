@@ -14,7 +14,7 @@ class SampleData extends Seeder
     public function run()
     {
         $user = factory(User::class)->create([
-            'email' => 'admin@jobsity.com',
+            'email' => 'admin@admin.com',
             'twitter_user' => 'taylorotwell',
         ]);
 
