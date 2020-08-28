@@ -105,7 +105,7 @@ class TwitterService implements TwitterServiceContract
         if (!Cache::has($this->tag($user))) {
             $client = new Standard(Client::GUZZLE);
 
-            $client->prepareRequest('GET', config('twitter.api_search_url') . '?screen_name=darioriverat&count=7');
+            $client->prepareRequest('GET', config('twitter.api_search_url') . '?screen_name=' . $user . '&count=7');
             $token = $this->getBearerToken();
             $client->setHeader('Authorization', 'Bearer ' . $token);
             $json = $client->execute()->response();
