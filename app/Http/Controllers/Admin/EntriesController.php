@@ -91,7 +91,7 @@ class EntriesController extends Controller
             'friendly_url_hash' => hash('md5', $request->input('friendly_url')),
         ]));
 
-        event(new EntryCreated($entry));
+        EntryCreated::dispatch($entry);
 
         return redirect()->route('entries.show', compact('entry'))->with([
             'success' => __('entries.messages.created'),
