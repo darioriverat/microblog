@@ -14,7 +14,7 @@ class TwitterServiceMock implements TwitterServiceContract
 
         return [
             [
-                "created_at" => "Sun Feb 02 12:32:53 +0000 2020",
+                "created_at" => "Suen Feb 02 12:32:53 +0000 2020",
                 "id" => 1223947395387547648,
                 "id_str" => "1223947395387547648",
                 "text" => "@Femi_Sorry I’m against brexit. When a doctor gives you a diagnosis - it is opinion. It can be backed up with facts… https://t.co/U70geQwkPw",
