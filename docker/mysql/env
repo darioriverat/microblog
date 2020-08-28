@@ -1,5 +1,5 @@
 MYSQL_HOST=db:3306
 MYSQL_ROOT_PASSWORD=root
-MYSQL_DATABASE=jobsity_db
-MYSQL_USER=jobsity_user
-MYSQL_PASSWORD=dbadmin
+MYSQL_DATABASE=entries_db
+MYSQL_USER=entries_user
+MYSQL_PASSWORD=entries_pass
