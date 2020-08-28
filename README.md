@@ -1,7 +1,6 @@
 # Entries and Tweets
 
-This application is designed to show the knowledge and expertise about web technologies,
-and creation of robust PHP web applications with attention to software architecture and security.
+This is a simple microblogging app with Twitter integration.
 
 You can download this project as follows.
 
@@ -106,7 +105,7 @@ After you executed this command, you should wait a few minutes until the backgro
 processing. You can be sure of this by looking the output of the following command.
 
 ```bash
-$ docker logs dario_app | tail -n1
+$ docker logs entries_app | tail -n1
 Entries and Twees has been installed!
 ```
 
