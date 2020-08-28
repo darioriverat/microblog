@@ -10,16 +10,17 @@ git clone https://github.com/darioriverat/entries-with-twitter-integration
 
 # Installation
 
-This application was developed with Laravel 6x, most of the following steps are related to laravel
+This application was developed with Laravel 7x, most of the following steps are related to laravel
 installation and configuration.
 
 ## Server requirements
 
 As any Laravel application, you will need to make sure your server meets the following requirements.
 
-- PHP >= 7.2.0
+- PHP >= 7.2.5
 - BCMath PHP Extension
 - Ctype PHP Extension
+- Fileinfo PHP Extension
 - JSON PHP Extension
 - Mbstring PHP Extension
 - OpenSSL PHP Extension
