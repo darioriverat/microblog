@@ -89,10 +89,8 @@ pass:  password
 For twitter integration set up the following variables with the appropriate values.
 
 ```properties
-TWITTER_API_KEY=
-TWITTER_API_SECRET_KEY=
-TWITTER_API_ACCESS_TOKEN=
-TWITTER_API_ACCESS_TOKEN_SECRET=
+TWITTER_CONSUMER_KEY=
+TWITTER_CONSUMER_SECRET_KEY=
 ```
 
 # Docker Installation
