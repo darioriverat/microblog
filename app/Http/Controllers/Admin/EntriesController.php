@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\API\Contracts\TwitterServiceContract;
 use App\Entry;
 use App\Events\EntryCreated;
+use App\Events\EntryUpdated;
 use App\HiddenTweets;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntry;
@@ -149,6 +150,8 @@ class EntriesController extends Controller
     public function update(UpdateEntry $request, Entry $entry)
     {
         $entry->update(array_merge($request->except('_token')));
+
+        event(new EntryUpdated($entry));
 
         return redirect()->route('entries.show', compact('entry'))->with([
             'success' => __('entries.messages.updated'),
