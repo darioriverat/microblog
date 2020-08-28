@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\View\View;
 
 class EntriesController extends Controller
 {
@@ -34,9 +35,9 @@ class EntriesController extends Controller
      *
      * @param int $userId
      * @param TwitterServiceContract $twitter
-     * @return Response
+     * @return View
      */
-    public function profile(int $userId, TwitterServiceContract $twitter)
+    public function profile(int $userId, TwitterServiceContract $twitter): View
     {
         $user = User::findOrFail($userId);
         $entries = Entry::where('created_by', $user->id)->orderBy('created_at', 'desc')->paginate(3);
