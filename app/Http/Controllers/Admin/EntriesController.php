@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\API\Contracts\TwitterServiceContract;
 use App\Entry;
+use App\Events\EntryCreated;
 use App\HiddenTweets;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntry;
@@ -88,6 +89,8 @@ class EntriesController extends Controller
             'created_by' => Auth::id(),
             'friendly_url_hash' => hash('md5', $request->input('friendly_url')),
         ]));
+
+        event(new EntryCreated($entry));
 
         return redirect()->route('entries.show', compact('entry'))->with([
             'success' => __('entries.messages.created'),
