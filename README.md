@@ -80,7 +80,7 @@ php artisan db:seed --class=SampleData
 You could use the following user to log in
 
 ```text
-email: admin@jobsity.com
+email: admin@admin.com
 pass:  password
 ```
 

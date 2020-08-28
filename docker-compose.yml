@@ -2,13 +2,13 @@ version: '3.2'
 
 services:
   web:
-    container_name: dario_app
+    container_name: entries_app
     build: ./docker/web
     volumes:
       - type: bind
         source: .
-        target: /var/www/jobsitychallenge/dariorivera
-    working_dir: /var/www/jobsitychallenge/dariorivera
+        target: /var/www/sites/entries.com
+    working_dir: /var/www/sites/entries.com
     ports:
       - 8085:80
     tty: true
@@ -18,13 +18,13 @@ services:
     links:
       - db
     networks:
-      self_declarations_network:
+      sites_network:
         ipv4_address: ${IPV4_NETWORK:-172.25.2}.30
         aliases:
           - litespeed
 
   db:
-    container_name: dario_app_db
+    container_name: entries_app_db
     build: ./docker/mysql
     ports:
       - 3306:3306
@@ -33,7 +33,7 @@ services:
     env_file:
       - ./docker/mysql/env
     networks:
-      self_declarations_network:
+      sites_network:
         ipv4_address: ${IPV4_NETWORK:-172.25.2}.10
         aliases:
           - mysql
@@ -43,7 +43,7 @@ volumes:
     driver: "local"
 
 networks:
-  self_declarations_network:
+  sites_network:
     driver: bridge
     driver_opts:
       com.docker.network.driver.mtu: 1450

@@ -1,2 +1,2 @@
---CREATE DATABASE jobsity_db;
---GRANT ALL PRIVILEGES ON jobsity_db.* TO jobsity_user;
+--CREATE DATABASE entries_db;
+--GRANT ALL PRIVILEGES ON entries_db.* TO entries_user;

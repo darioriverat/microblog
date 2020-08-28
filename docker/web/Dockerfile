@@ -1,7 +1,7 @@
 FROM php:7.3-apache
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
-COPY dariorivera.jobsitychallenge.com.conf /etc/apache2/sites-available/000-default.conf
+COPY entries.sites.com.conf /etc/apache2/sites-available/000-default.conf
 
 RUN apt-get -y update \
     && apt-get -y install \
@@ -20,7 +20,7 @@ ENV PUID ${PUID}
 ARG PGID=1000
 ENV PGID ${PGID}
 
-RUN useradd -u ${PUID} -g www-data -m jobsity
+RUN useradd -u ${PUID} -g www-data -m entries
 
 # Entry point
 USER root
