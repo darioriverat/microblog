@@ -9,8 +9,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
-class SendEntryCreatedNotification
+class SendEntryCreatedNotification implements ShouldQueue
 {
+    public $delay = 10;
+
     /**
      * Create the event listener.
      *
