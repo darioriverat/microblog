@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\TweetHidden;
+use App\Events\TweetShowed;
 use App\HiddenTweets;
 use App\Http\Controllers\Controller;
 use Exception;
@@ -24,6 +26,8 @@ class TweetsController extends Controller
                 'tweet_id' => $request->input('tweet_id'),
                 'user_id' => Auth::id(),
             ]);
+
+            TweetHidden::dispatch($request->input('tweet_id'));
         } catch (Exception $e) {
             report($e);
 
@@ -48,6 +52,8 @@ class TweetsController extends Controller
         try {
             $tweet = HiddenTweets::where('tweet_id', $id)
                 ->where('user_id', Auth::id())->delete();
+
+            TweetShowed::dispatch($id);
         } catch (Exception $e) {
             report($e);
 
