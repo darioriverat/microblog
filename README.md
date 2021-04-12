@@ -1,4 +1,38 @@
-# Entries and Tweets
+# :round_pushpin: The Problem
+
+Create a web app that will have two parts. The first part involves entries (similar to blog posts)
+from registered users (functionality to view, create, and edit entries). The second part is to be
+able to see a single user's entries and tweets (from Twitter).
+
+## Features
+
+:heavy_check_mark: The main page (index) should contain the last three entries for all users, ordered by
+date. Also, this page should have pagination. Each entry should display the user that
+created it, with a link to the user's page, next to the entry. This view should be public.
+- The header should have Log-in / Log-out / Register options. Create this
+functionality. Be creative, this can be done several ways.
+- If the user is logged in, each of the entries should have a link to an "edit entry"
+page.
+
+:heavy_check_mark: To create entries, you should be logged in. There should be a button in the header that
+links to the entry creation page.
+
+:heavy_check_mark: Create a separate page to view a single user's entries (in the main content area) and
+tweets (in a sidebar).
+- Tip. Use the following resource: https://dev.twitter.com/docs
+- On each tweet entry, show a link to "hide" it. This can only be done by the logged
+in user (i.e. a user cannot hide another user's tweets). Use AJAX and javascript
+to hide the tweet.
+- Hidden tweets must never be shown to anyone but the current user. (The user
+should be able to "un-hide" a tweet)
+- This will require storing which tweets are hidden into the DB. This is not taken
+into account in the model below, so add it yourself.
+
+:heavy_check_mark: The model should contain at least the following properties:
+- Users - username, email, password, twitter username
+- Entries - creation date, title, content, author (User)
+
+# :bulb: The Solution
 
 This is a simple microblogging app with Twitter integration.
 
